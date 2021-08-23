@@ -47,6 +47,7 @@ public class RegrasDeJogadaTest {
 		 "2,0,X,X", "2,0,X,O", "2,0,O,O", "2,0,O,X",
 		 "2,0,X,X", "2,1,X,O", "2,1,O,O", "2,1,O,X",
 		 "2,0,X,X", "2,2,X,O", "2,2,O,O", "2,2,O,X",})
+	
 	public void testJogadaEmZonaPreenchida(int x, int y, Character um, Character dois)
 			throws ExcecaoPorCoordenadaInvalida, ExcecaoPorSimboloInvalido {
 		assertThrows(ExcecaoPorCoordenadaInvalida.class, () -> {

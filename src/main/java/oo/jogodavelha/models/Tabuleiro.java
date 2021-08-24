@@ -4,15 +4,16 @@ import java.util.Map;
 
 public class Tabuleiro {
 
-	public Map<Coordenada, Character> tabuleiro;
+	public Map<Coordenada, Jogada> tabuleiro;
 	Character matrizTabuleiro[][] = new Character[3][3];
 
-	public int tamnahoMap() {
+	public int tamanhoTabuleiro() {
 		return tabuleiro.size();
 	}
-	protected Character getMatrizTabuleiro(int x, int y) {
-		return matrizTabuleiro[x][y];
-	}
+	
+//	protected Character getMatrizTabuleiro(int x, int y) {
+//		return matrizTabuleiro[x][y];
+//	}
 
 	
 	public Map getTabuleiro() {
@@ -21,7 +22,6 @@ public class Tabuleiro {
 
 	private Coordenada getPosicao() {
 		return null;
-
 	}
 
 	public boolean checkPosition(Coordenada coordenada) {
@@ -37,7 +37,7 @@ public class Tabuleiro {
 
 	public void preencheMatriz() {
 		for (Coordenada chave : tabuleiro.keySet()) {
-			matrizTabuleiro[chave.getX()][chave.getY()] = tabuleiro.get(chave);
+			matrizTabuleiro[chave.getX()][chave.getY()] = tabuleiro.get(chave).getSimbolo();
 		}
 	}
 	
@@ -70,11 +70,11 @@ public class Tabuleiro {
 	}
 
 	public Tabuleiro() {
-		tabuleiro = new HashMap<Coordenada, Character>();
+		tabuleiro = new HashMap<Coordenada, Jogada>();
 	}
 
 	public void add(Jogada umaJogada) {
-		tabuleiro.put(umaJogada.coordenada, umaJogada.simbolo);
+		tabuleiro.put(umaJogada.coordenada, umaJogada);
 	}
 
 }

@@ -62,7 +62,7 @@ public class Main {
 			
 			g.printTabuleiro();
 			
-			System.out.println(g.hasWinner());
+			System.out.println(g.hasWinner()+" Tam: "+g.tamanho());
 			
 			
 			

@@ -1,9 +1,9 @@
 package oo.jogodavelha.models;
 
 public class Coordenada {
-	
+
 	int x, y;
-	
+
 	public int getX() {
 		return x;
 	}
@@ -20,13 +20,13 @@ public class Coordenada {
 		this.y = y;
 	}
 
-	public Coordenada(int Nx, int Ny){
+	public Coordenada(int Nx, int Ny) {
 		setX(Nx);
 		setY(Ny);
 	}
-	
+
 	public boolean equals(Coordenada obj) {
-		if(obj.getX() == this.getX() && obj.getY() == this.getY()) {
+		if (obj.getX() == this.getX() && obj.getY() == this.getY()) {
 			return true;
 		}
 		return false;

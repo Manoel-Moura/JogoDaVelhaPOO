@@ -1,11 +1,14 @@
 package oo.jogodavelha.models;
 import java.util.HashMap;
 import java.util.Map;
+import oo.jogodavelha.exceptions.ExcecaoPorCoordenadaInvalida;
+import oo.jogodavelha.exceptions.ExcecaoPorSimboloInvalido;
 
 public class Tabuleiro {
 
 	public Map<Coordenada, Jogada> tabuleiro;
 	Character matrizTabuleiro[][] = new Character[3][3];
+	Character vez = ' ';
 
 	public int tamanhoTabuleiro() {
 		return tabuleiro.size();
@@ -20,20 +23,29 @@ public class Tabuleiro {
 		return tabuleiro;
 	}
 
-	private Coordenada getPosicao() {
-		return null;
-	}
-
-	public boolean checkPosition(Coordenada coordenada) {
-
-		for (Coordenada coord : tabuleiro.keySet()) {
-			if (coord.equals(coordenada)) {
-				return true;
+	public boolean verificaPosicao(Jogada jo) throws ExcecaoPorSimboloInvalido, ExcecaoPorCoordenadaInvalida {
+		
+		for (Coordenada coo : tabuleiro.keySet()) {
+			if(coo.equals(jo.getCoordenada())) {
+				throw new ExcecaoPorCoordenadaInvalida();
 			}
 		}
-		return false;
-
+		
+		if(vez == jo.getSimbolo()) {
+			throw new ExcecaoPorSimboloInvalido();
+		}
+		
+		if(jo.getCoordenada().getX() < 0 || jo.getCoordenada().getX() > 2 || 
+				jo.getCoordenada().getY() < 0 || jo.getCoordenada().getY() > 2) {
+			throw new ExcecaoPorCoordenadaInvalida();
+		}
+		
+		
+		
+		
+		return true;
 	}
+
 
 	public void preencheMatriz() {
 		for (Coordenada chave : tabuleiro.keySet()) {
@@ -73,8 +85,19 @@ public class Tabuleiro {
 		tabuleiro = new HashMap<Coordenada, Jogada>();
 	}
 
-	public void add(Jogada umaJogada) {
-		tabuleiro.put(umaJogada.coordenada, umaJogada);
+	public void add(Jogada umaJogada) throws ExcecaoPorCoordenadaInvalida, ExcecaoPorSimboloInvalido{
+		try {
+			verificaPosicao(umaJogada);
+			tabuleiro.put(umaJogada.coordenada, umaJogada);
+			vez = umaJogada.getSimbolo();
+		} catch (ExcecaoPorCoordenadaInvalida e) {
+			// TODO: handle exception
+			throw new ExcecaoPorCoordenadaInvalida();
+		} catch (ExcecaoPorSimboloInvalido e){
+			throw new ExcecaoPorSimboloInvalido();
+		}
+		
+		
 	}
 
 }

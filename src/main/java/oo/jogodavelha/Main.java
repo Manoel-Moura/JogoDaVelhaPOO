@@ -12,13 +12,13 @@ import oo.jogodavelha.models.Tabuleiro;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ExcecaoPorCoordenadaInvalida, ExcecaoPorSimboloInvalido {
 
 			
 			Jogo g = new Jogo();
 			
-//			g.add(new Jogada('X',new Coordenada(0,0)));
-//			g.add(new Jogada('X',new Coordenada(0,1)));
+			g.add(new Jogada('X',new Coordenada(0,0)));
+			g.add(new Jogada('X',new Coordenada(0,1)));
 //			g.add(new Jogada('X',new Coordenada(0,2)));
 			
 //			g.add(new Jogada('X',new Coordenada(1,0)));

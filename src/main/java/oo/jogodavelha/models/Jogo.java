@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.function.BooleanSupplier;
 
+import oo.jogodavelha.exceptions.ExcecaoPorCoordenadaInvalida;
+import oo.jogodavelha.exceptions.ExcecaoPorSimboloInvalido;
+
 public class Jogo {
 
 //	private Scanner ler = new Scanner(System.in);
@@ -21,11 +24,13 @@ public class Jogo {
 	}
 
 	public boolean check(Jogada umaJogada) {
-		boolean test = tabuleiro.checkPosition(umaJogada.coordenada);
-
-		if (test)
-			return false;
-		return true;
+		try {
+			tabuleiro.verificaPosicao(umaJogada);
+			return true;
+		} catch (ExcecaoPorCoordenadaInvalida | ExcecaoPorSimboloInvalido e) {
+			// TODO Auto-generated catch bloc			
+		}
+		return false;
 	}
 
 	public boolean hasWinner() {
@@ -221,12 +226,7 @@ public class Jogo {
 		tabuleiro.printMatriz();
 	}
 
-	public void add(Jogada jogada) {
-		boolean test = this.check(jogada);
-
-		if (test) {
-			this.tabuleiro.add(jogada);
-		}
-
+	public void add(Jogada jogada) throws ExcecaoPorCoordenadaInvalida, ExcecaoPorSimboloInvalido {
+		this.tabuleiro.add(jogada);
 	}
 }
